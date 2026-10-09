@@ -1,0 +1,165 @@
+.product-card {
+  background: #ffffff;
+  border: 1px solid #eadfd8;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(40, 25, 20, 0.12);
+}
+
+.product-image-container {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background: #f5f0eb;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.04);
+}
+
+.wishlist-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  color: #5a3d35;
+
+  transition: all 0.2s ease;
+}
+
+.wishlist-button:hover {
+  transform: scale(1.08);
+}
+
+.wishlist-button.liked {
+  color: #c45a5a;
+}
+
+.product-info {
+  padding: 18px;
+}
+
+.product-category {
+  margin: 0 0 7px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #9a7467;
+
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.product-name {
+  margin: 0 0 10px;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  color: #211316;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  margin-bottom: 16px;
+
+  font-size: 14px;
+  color: #8a6b3f;
+}
+
+.product-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.product-price {
+  margin: 0;
+
+  font-size: 19px;
+  font-weight: 700;
+
+  color: #211316;
+}
+
+.add-cart-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 10px 13px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #c45a5a;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.add-cart-button:hover {
+  background: #a94747;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .product-image-container {
+    height: 230px;
+  }
+
+  .product-info {
+    padding: 14px;
+  }
+
+  .product-name {
+    font-size: 16px;
+  }
+
+  .product-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-cart-button {
+    justify-content: center;
+  }
+}
