@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const db = require("./db");
 
 const app = express();
-const PORT = 5000;
+const PORT = Number(process.env.PORT) || 5000;
 const JWT_SECRET = process.env.JWT_SECRET;
 
 if (!JWT_SECRET) {
@@ -183,8 +183,25 @@ function verifyToken(req, res, next) {
   }
 }
 
-app.use(cors());
+const allowedOrigins = (process.env.FRONTEND_URL || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || process.env.NODE_ENV !== "production" || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Origin is not allowed by CORS"));
+  }
+}));
 app.use(express.json());
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 
 app.get("/", (req, res) => {
   res.json({
@@ -687,7 +704,7 @@ ensureTables()
   .then(() => seedProducts())
   .then(() => seedDefaultAdmin())
   .then(() => {
-    app.listen(PORT, () => {
+    app.listen(PORT, "0.0.0.0", () => {
       console.log(`CasaNest server running on http://localhost:${PORT}`);
     });
   })
